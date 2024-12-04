@@ -141,7 +141,12 @@
                 of their employees. Some employees may not want to share their age or gender,
                 so the business needs to find a way to handle this missing data. Data processing
                 can accomplish this by imputing the data. Now that they have all of the data
-                filled in, they can use it to make calculations.
+                filled in, they can use it to make calculations. Businesses will often need more
+                than just data imputation. One common thing used when processing data is called
+                normalization/standardization. Normalization adjusts the scale of features to
+                ensure they have a similar range/distribution. This ensures that no single feature
+                will dominate the model due to its scale. This will apply in the model we create
+                later in the article.
             </p>
 
             <h3>Data Processing with Java</h3>
@@ -192,15 +197,15 @@ public class DataAnalysis {
             <h3>Data Processing with Python</h3>
             <p>
                 Python is not nearly as verbose as Java. Throughout this article, this will
-                be clear in each example. This also makes it very simple to write code for
+                be clear in each example. This makes it very simple to write code for
                 machine learning. It also has a diverse selection of libraries to help streamline
                 this process further. While Python has advantages that make it easier to write
-                code, it is not without faults. Python uses an interpreter to run its code
+                code, it is not without faults. Python uses an interpreter to run its code,
                 which means the program is compiled line-by-line. This makes Python much slower 
                 than Java. Businesses must consider whether it is worth it to have faster runtimes
                 or faster development times when chosing between languages. (cite py vs java for ml)
             </p>
-            <pre><!--<code class="language-python">-->
+            <pre><code class="language-python">
 # Python Example: Analyzing salary data with pandas
 import pandas as pd
 
@@ -209,7 +214,7 @@ filtered = ds[ds['Age'] > 30]
 avg = filtered['Salary'].mean()
 
 print(f"Average salary for people over 30: ${avg:.2f}")
-            <!--</code>--></pre>
+            </code></pre>
             <h2>Machine Learning</h2>
             <p>
                 Machine Learning is being used more and more throughout businesses today. Some common
@@ -226,11 +231,59 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 math behind it, but it will cover the code. (cite IBM)
             </p>
 
-            <h3>Logisitc Regression with Java</h3>
+            <h3>Logisitic Regression with Java</h3>
             <p>
                 As mentioned before, Java does not have as many libraries to make machine learning as smooth
                 as Python. In Java, the math may have to be done by hand, which is almost what we'll do here.
+                Since Java is much more verbose than Python and some other languages, development times will
+                likely increase when making models with Java. This comes with the upside that models in Java
+                are much more performant, secure, and scalable for future technological advancements (cite py vs java). To show
+                this, we will create a simple Logistic Regression model in Java. This model will be used to
+                predict whether a person is likely to purchase something based on the country they live in,
+                their age, and their salary. We will also test the accuracy of the model.
+            </p>
+            <pre><code class="language-java">
+public static void main(String[] args) throws IOException {
+    // Load the data from the CSV file
+    // Imputing missing values is done here
+    List&lt;double[]&gt; temp = LoadCSV.loadData(csvPath);
+    double[][] data = temp.toArray(new double[0][]);
+    double[][] X = new double[data.length][data[0].length-1];
+    double[] y = new double[data.length];
 
+    for (int i = 0; i &lt; data.length; i++){
+        System.arraycopy(data[i], 0, X[i], 0, data[i].length-1);
+        y[i] = data[i][data[i].length-1];
+    }
+    // Standardizes range of data
+    X = normalize(X);
+
+    // Split the data into a training and test set
+    int trainSize = (int) (0.8 * X.length);
+    double[][] X_train = new double[trainSize][];
+    double[] y_train = new double[trainSize];
+    double[][] X_test = new double[X.length-trainSize][];
+    double[] y_test = new double[X.length-trainSize];
+
+    System.arraycopy(X, 0, X_train, 0, trainSize);
+    System.arraycopy(y, 0, y_train, 0, trainSize);
+    System.arraycopy(X, trainSize, X_test, 0, X.length-trainSize);
+    System.arraycopy(y, trainSize, y_test, 0, y.length-trainSize);
+
+    // Train the model
+    LogisticRegressionModel model = new LogisticRegressionModel(0.1, 1000);
+    model.train(X_train, y_train);
+
+    int[] predictions = model.predict(X_test);
+
+    // Show Accuracy
+    double accuracy = model.computeAccuracy(toIntArray(y_test), predictions);
+    System.out.println("Model Accuracy: " + accuracy);
+}
+            </code></pre>
+            <p>
+                Note: This code does not show the work going on in the functions.
+                More information can be found at the bottom of the article.
             </p>
 
             <h3>Logistic Regression with Python</h3>
@@ -238,7 +291,58 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 Python's extensive libraries make it so that none of the math has to be done by hand. Common
                 processes are made into simple functions that make Machine Learning with Python easy to learn
                 and use. Businesses often use Python for these reasons. It's much easier for developers to
-                make machine learning models in Python
+                make machine learning models in Python, which decreases development times, update times, and
+                testing/debugging times. In this model, we will use common machine learning libraries including
+                NumPy, Pandas, and Scikit-learn to accomplish the same task as the model in Java.
+            </p>
+            <pre><code class="language-python">
+# Load and format data
+data = pd.read_csv("Data.csv")
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+
+# Fill missing values
+imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+imputer.fit(X[:, 1:3])
+X[:, 1:3] = imputer.transform(X[:, 1:3])
+
+# Encode the home country into a numerical value
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+X = np.array(ct.fit_transform(X))
+
+# Encode the purchase outcome into a numerical value
+le = LabelEncoder()
+y = le.fit_transform(y)
+
+# Split into training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
+
+# Normalize data
+scaler = StandardScaler()
+X_train[:, 3:] = scaler.fit_transform(X_train[:, 3:])
+X_test[:, 3:] = scaler.transform(X_test[:, 3:])
+
+# Train the model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+# Show accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy:.2f}")
+            </code></pre>
+            <p>
+                Note: Unlike the Java code, this code is complete. Some classes will need to be imported.
+                More information can be found at the bottom of the article.
+            </p>
+            <h2>Overview</h2>
+            <p>
+                put stuff here
+            </p>
+            <h2>Source Code</h2>
+            <p>
+                link source code
             </p>
         </article>
 

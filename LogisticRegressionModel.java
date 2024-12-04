@@ -3,7 +3,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.linear.ArrayRealVector;
 
-import com.jamesexley.csv.mlHelpers.LoadCSV;
+import LoadCSV;
 
 import java.io.IOException;
 import java.util.List;

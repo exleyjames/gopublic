@@ -1,0 +1,252 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Why And How Java And Python Are Being Used In Business Today
+        </title>
+        <style>
+            body {
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                line-height: 1.6;
+                color: #333;
+                margin: 5;
+                padding: 5;
+                background-color: #f9f9f9;
+            }
+
+            .container {
+                width: 80%;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            header {
+                border-top: 1px solid #000;
+                border-bottom: 1px solid #000;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            header h1 {
+                font-size: 3em;
+                color: #111;
+                font-weight: normal;
+            }
+
+            header h2 {
+                font-size: 1.5em;
+                color: #111;
+                font-weight: normal;
+            }
+
+            article p {
+                font-size: 1.1em;
+                margin-bottom: 1em;
+            }
+
+            article h2, article h3 {
+                color: #222;
+                font-weight: bold;
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+            }
+
+            article h2 {
+                font-size: 1.8em;
+            }
+
+            article h3 {
+                font-size: 1.4em;
+            }
+
+            code, pre {
+                display: block;
+                background-color: #f4f4f4;
+                padding: 10px;
+                border-left: 4px solid #ccc;
+                margin: 1em 0;
+                font-family: monospace;
+                overflow-x: auto;
+                font-size: 0.95em;
+                color: #333;
+            }
+
+            pre {
+                border-radius: 3px;
+            }
+
+            footer {
+                border-top: 1px solid #ccc;
+                padding-top: 10px;
+                margin-top: 20px;
+                text-align: center;
+                color: #888;
+                font-size: 0.9em;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    width: 90%;
+                    padding: 10px;
+                }
+
+                header h1 {
+                    font-size: 2em;
+                }
+
+                article p, article h2, article h3 {
+                    font-size: 1em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Java and Python for Business Machine Learning</h1>
+                <p><b>James Exley</b> English Student</p>
+                <p><b>Go Public Project</b></p>
+            </header>
+        </div>
+        <article>
+            <p>
+                This article will cover the differences between Java and Python
+                and their machine learning implementations. It will examine the pros
+                and cons of each as well as explore how they can be used in a
+                business context.
+            </p>
+            
+            <h2>Data Analysis and Processing</h2>
+            <p>
+                This is where the process starts. Data analysis and processing is one
+                of the most important steps in machine learning. In essence, it's
+                taking data and turning it into something useful. It starts with filling
+                in any missing data because a machine learning model can't work properly
+                with an incomplete dataset. Next, the data needs to be put into a form
+                that the code will understand. This process can involve any combination
+                of imputing, encoding, scaling, and more(cite steps of ml). We will cover some of these 
+                later on. Once this is done, our data processing is done. So how can Java 
+                and Python help us do this? And how does this apply to businesses?
+            </p>
+
+            <h3>Data Processing for Business</h3>
+            <p>
+                Have you ever taken a survey about a product or yourself? Chances are, you
+                have. Let's say a business wants to know more about it's employee salaries.
+                They want to examine differences between pay for different genders and ages
+                of their employees. Some employees may not want to share their age or gender,
+                so the business needs to find a way to handle this missing data. Data processing
+                can accomplish this by imputing the data. Now that they have all of the data
+                filled in, they can use it to make calculations.
+            </p>
+
+            <h3>Data Processing with Java</h3>
+            <p>
+                Java is a very verbose language. This means it takes lots of code to do some
+                things compared to other languages. Java also does not have many built in
+                libraries for data processing which means there's a bit more manual work to do.
+                Java makes up for this with it's security, multithreading capabilities, and 
+                fast runtimes (cite py vs java for ml). Each of these are important for a machine learning project,
+                especially on a large scale like a business will have. Java accomplishes its
+                security largely through the Java Virtual Machine. Code is compiled into
+                bytecode which can be executed on any machine. Then, bytecode verification
+                is performed before the program is executed to make sure the code is safe.
+                The JVM and bytecode compilation are also big reasons for why Java is so fast.
+                Java compilation does not consume processor or memory resources, which is a big
+                advantage when using it for machine learning and an even bigger advantage for
+                businesses who need to be very careful allocating their resources. (cite why java is secure)
+            </p>
+            <p>
+                The below example shows a simple process. In a list of employees,
+                it finds the average salary of every employee over the age of 30.
+                This is a very basic example of data processing.
+            </p>
+            
+            <pre><code class="language-java">
+// Java Example: Finding the average salary of people over 30 years old
+public class DataAnalysis {
+    List&lt;Person&gt; persons = new ArrayList&lt;&gt;();
+    try (CSVReader reader = new CSVReader(new FileReader(filepath))){
+        String[] line;
+        reader.readNext();
+        while ((line = reader.readNext()) != null) {
+            String name = line[0];
+            int age = Integer.parseInt(line[1]);
+            double salary = Double.parseDouble(line[2]);
+            persons.add(new Person(name, age, salary));
+        }
+    } catch (CsvValidationException | IOException e){
+        e.printStackTrace();
+    }
+    double avg = persons.stream().filter(person -&gt; person.getAge() &gt; 30)
+                    .mapToDouble(Person::getSalary)
+                    .average().orElse(0.0);
+    System.out.printf("Average salary for people over 30: $%.2f%n", avg);
+}
+            </code></pre>
+
+            <h3>Data Processing with Python</h3>
+            <p>
+                Python is not nearly as verbose as Java. Throughout this article, this will
+                be clear in each example. This also makes it very simple to write code for
+                machine learning. It also has a diverse selection of libraries to help streamline
+                this process further. While Python has advantages that make it easier to write
+                code, it is not without faults. Python uses an interpreter to run its code
+                which means the program is compiled line-by-line. This makes Python much slower 
+                than Java. Businesses must consider whether it is worth it to have faster runtimes
+                or faster development times when chosing between languages. (cite py vs java for ml)
+            </p>
+            <pre><!--<code class="language-python">-->
+# Python Example: Analyzing salary data with pandas
+import pandas as pd
+
+ds = pd.read_csv("data.csv")
+filtered = ds[ds['Age'] > 30]
+avg = filtered['Salary'].mean()
+
+print(f"Average salary for people over 30: ${avg:.2f}")
+            <!--</code>--></pre>
+            <h2>Machine Learning</h2>
+            <p>
+                Machine Learning is being used more and more throughout businesses today. Some common
+                uses are personalized customer service, fraud detection, retail shelf analysis, and
+                many more (cite 8 ways). But, what is "machine learning"? How does a machine learn? How do programming
+                languages accomplish this? Well, Machine Learning is a branch of Artificial Intelligence.
+                It uses data and algorithms to imitate the way humans learn. This is accomplished in one
+                of three ways: supervised, unsupervised, and semi-supervised learning. We will focus on
+                supervised learning in this article. Supervised learning uses labeled data to classify or
+                predict outcomes. The model will adjust its weights until it's fitted appropriately and
+                can give an accurate value. In this article, we will build a Logistic Regression model
+                which is used to give a "yes/no" answer to a question. This is done with a combination of
+                linear algebra and an algorithm called "gradient descent". This article will not cover the
+                math behind it, but it will cover the code. (cite IBM)
+            </p>
+
+            <h3>Logisitc Regression with Java</h3>
+            <p>
+                As mentioned before, Java does not have as many libraries to make machine learning as smooth
+                as Python. In Java, the math may have to be done by hand, which is almost what we'll do here.
+
+            </p>
+
+            <h3>Logistic Regression with Python</h3>
+            <p>
+                Python's extensive libraries make it so that none of the math has to be done by hand. Common
+                processes are made into simple functions that make Machine Learning with Python easy to learn
+                and use. Businesses often use Python for these reasons. It's much easier for developers to
+                make machine learning models in Python
+            </p>
+        </article>
+
+        <!-- Footer Section -->
+        <footer>
+            <h1>PUT A DATE HERE</h1>
+            <p>PUT A DATE HERE. James Exley. English 101.</p>
+        </footer>
+    </div>
+    </body>
+</html>

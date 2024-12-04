@@ -126,6 +126,7 @@
                 and cons of each as well as explore how they can be used in a
                 business context.
             </p>
+            <p><b>Note: All code in this article was written, debugged, and tested by James Exley.</b></p>
             
             <h2>Data Analysis and Processing</h2>
             <p>
@@ -164,15 +165,17 @@
                 things compared to other languages. Java also does not have many built in
                 libraries for data processing which means there's a bit more manual work to do.
                 Java makes up for this with it's security, multithreading capabilities, and 
-                fast runtimes (cite py vs java for ml). Each of these are important for a machine learning project,
-                especially on a large scale like a business will have. Java accomplishes its
-                security largely through the Java Virtual Machine. Code is compiled into
-                bytecode which can be executed on any machine. Then, bytecode verification
-                is performed before the program is executed to make sure the code is safe.
-                The JVM and bytecode compilation are also big reasons for why Java is so fast.
-                Java compilation does not consume processor or memory resources, which is a big
-                advantage when using it for machine learning and an even bigger advantage for
-                businesses who need to be very careful allocating their resources. (cite why java is secure)
+                fast runtimes
+                (<a href="javascript:void(0)" onclick="window.open(pyVsJava, '_blank')">Python Vs Java for ML</a>).
+                Each of these are important for a machine learning project, especially on a large
+                scale like a business will have. Java accomplishes its security largely through the
+                Java Virtual Machine. Code is compiled into bytecode which can be executed on any
+                machine. Then, bytecode verification is performed before the program is executed to
+                make sure the code is safe. The JVM and bytecode compilation are also big reasons for
+                why Java is so fast. Java compilation does not consume processor or memory resources,
+                which is a big advantage when using it for machine learning and an even bigger advantage
+                for businesses who need to be very careful allocating their resources
+                (<a href="javascript:void(0)" onclick="window.open(whySecure, '_blank')">Why Java is Secure</a>).
             </p>
             <p>
                 The below example shows a simple process. In a list of employees,
@@ -212,7 +215,8 @@ public class DataAnalysis {
                 code, it is not without faults. Python uses an interpreter to run its code,
                 which means the program is compiled line-by-line. This makes Python much slower 
                 than Java. Businesses must consider whether it is worth it to have faster runtimes
-                or faster development times when chosing between languages. (cite py vs java for ml)
+                or faster development times when chosing between languages
+                (<a href="javascript:void(0)" onclick="window.open(pyVsJava, '_blank')">Python Vs Java for ML</a>).
             </p>
             <pre><code class="language-python">
 # Python Example: Analyzing salary data with pandas
@@ -228,7 +232,9 @@ print(f"Average salary for people over 30: ${avg:.2f}")
             <p>
                 Machine Learning is being used more and more throughout businesses today. Some common
                 uses are personalized customer service, fraud detection, retail shelf analysis, and
-                many more (cite 8 ways). But, what is "machine learning"? How does a machine learn? How do programming
+                many more 
+                (<a href="javascript:void(0)" onclick="window.open(ways8, '_blank')">8 Ways Businesses use ML</a>).
+                But, what is "machine learning"? How does a machine learn? How do programming
                 languages accomplish this? Well, Machine Learning is a branch of Artificial Intelligence.
                 It uses data and algorithms to imitate the way humans learn. This is accomplished in one
                 of three ways: supervised, unsupervised, and semi-supervised learning. We will focus on
@@ -237,7 +243,8 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 can give an accurate value. In this article, we will build a Logistic Regression model
                 which is used to give a "yes/no" answer to a question. This is done with a combination of
                 linear algebra and an algorithm called "gradient descent". This article will not cover the
-                math behind it, but it will cover the code. (cite IBM)
+                math behind it, but it will cover the code
+                (<a href="javascript:void(0)" onclick="window.open(IBM, '_blank')">What is Machine Learning?</a>).
             </p>
 
             <h3>Logisitic Regression with Java</h3>
@@ -246,10 +253,11 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 as Python. In Java, the math may have to be done by hand, which is almost what we'll do here.
                 Since Java is much more verbose than Python and some other languages, development times will
                 likely increase when making models with Java. This comes with the upside that models in Java
-                are much more performant, secure, and scalable for future technological advancements (cite py vs java). To show
-                this, we will create a simple Logistic Regression model in Java. This model will be used to
-                predict whether a person is likely to purchase something based on the country they live in,
-                their age, and their salary. We will also test the accuracy of the model.
+                are much more performant, secure, and scalable for future technological advancements
+                (<a href="javascript:void(0)" onclick="window.open(pyVsJava, '_blank')">Python Vs Java for ML</a>).
+                To show this, we will create a simple Logistic Regression model in Java. This model will be
+                used to predict whether a person is likely to purchase something based on the country they 
+                live in, their age, and their salary. We will also test the accuracy of the model.
             </p>
             <pre><code class="language-java">
 public static void main(String[] args) throws IOException {

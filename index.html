@@ -97,6 +97,22 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
 
+            a {
+                color: #0073e6;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .image-footnote {
+                font-size: 0.9rem;
+                color: #555;
+                text-align: center;
+                margin-top: 8px;
+            }
+
             @media (max-width: 768px) {
                 .container {
                     width: 90%;
@@ -132,6 +148,9 @@
             </header>
         </div>
         <img class="article-image" src="https://seamtn.utk.edu/wp-content/uploads/sites/66/2022/04/machine_learning.jpg">
+        <p class="image-footnote">
+            Image from: <a href="https://www.forbes.com/sites/kalevleetaru/2019/01/15/why-machine-learning-needs-semantics-not-just-statistics/?sh=622ccf7a77b5" target="_blank" rel="noopener noreferrer">Forbes</a>
+        </p>
         <article>
             <p>
                 This article will cover the differences between Java and Python
@@ -251,7 +270,6 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 and run a few lines in Python. Often, businesses will choose Python when they need rapid
                 development or for data analysis projects.
             </p>
-            <img class="article-image" src="https://i1.wp.com/dataaspirant.com/wp-content/uploads/2016/04/logisticregression.png?resize=690%2C345">
             <h2>Machine Learning</h2>
             <p>
                 Machine Learning is being used more and more throughout businesses today. Some common
@@ -270,7 +288,10 @@ print(f"Average salary for people over 30: ${avg:.2f}")
                 math behind it, but it will cover the code
                 (<a href="javascript:void(0)" onclick="window.open(IBM, '_blank')">What is Machine Learning?</a>).
             </p>
-
+            <img class="article-image" src="https://i1.wp.com/dataaspirant.com/wp-content/uploads/2016/04/logisticregression.png?resize=690%2C345">
+            <p class="image-footnote">
+                Image from: <a href="https://dataaspirant.com/how-logistic-regression-model-works/" target="_blank" rel="noopener noreferrer">Dataaspirant</a>
+            </p>
             <h3>Logisitic Regression with Java</h3>
             <p>
                 As mentioned before, Java does not have as many libraries to make machine learning as smooth
@@ -390,7 +411,7 @@ print(f"Model Accuracy: {accuracy:.2f}")
                 A generalized argument for the better language would be: if the project is small, use Python,
                 otherwise, use Java. In the real world, this will almost never be how it works out. A more
                 specific answer is that Java is generally better when there are strict performance requirements,
-                long-term maintenance is necessary, or very large datasets. Python will generally be better
+                very large datasets, or long-term maintenance is necessary. Python will generally be better
                 for rapid prototyping, data science, or projects where so much math is involved that it's not
                 feasible to write it all out (i.e. deep learning or neural networks).
             </p>
@@ -408,7 +429,7 @@ print(f"Model Accuracy: {accuracy:.2f}")
         <!-- Footer Section -->
         <footer>
             <h1>PUT A DATE HERE</h1>
-            <p>PUT A DATE HERE. James Exley. English 101.</p>
+            <p>PUT A DATE HERE. James Exley. English 101. Professor O'Connor.</p>
         </footer>
     </div>
     </body>
